@@ -1,15 +1,6 @@
-class Okra_Auth():
-    """
-    Okra offers a path for a customer to successfully verify their bank. 
-    The customer enters their credentials and are authenticated immediately.
-    
-    https://docs.okra.ng/products/auth
+class Initializer():
 
-    This module abstracts all the endpoints on Okra Auth, link above
-
-    """
-    
-    def __init__(self, token, base_url):
+    def __init__(self, token, base_url='https://api.okra.ng/sandbox/v1/', prod_url=None):
         
         """
         Import requests on initialization
@@ -19,25 +10,39 @@ class Okra_Auth():
         
         import requests
         
-        self.api_token = inp_dict['api_token']
-        self.base_url = inp_dict['base_url']
+        self.api_token = token
+        if prod_url is None:
+            self.base_url = base_url
+        else:
+            self.base_url = prod_url
         self.headers = {'Content-Type': 'application/json',
                           'Authorization' : self.api_token}
         self.requests = requests
-        
+
+
+
+class Okra_Auth(Initializer):
+    """
+    Okra offers a path for a customer to successfully verify their bank. 
+    The customer enters their credentials and are authenticated immediately.
+    
+    https://docs.okra.ng/products/auth
+
+    Initialize with token and base_url(e.g 'https://api.okra.ng/sandbox/v1/')
+    """
+
+     
     def retrieve_auth(self):
         
         """
         Retrieve Bank details
-
-        Returns Json Response
         """
         url = self.base_url + "products/auths"
         resp = self.requests.post(url, headers = self.headers)
         return resp.json()
     
     
-    def getbyID(self, idx, page=1, limit=1):
+    def getbyID(self, idx, page=1, limit=20):
         
         """
         fetch authentication info using the id of the authentication record.
@@ -50,7 +55,7 @@ class Okra_Auth():
         return resp.json()
     
     
-    def getbyOptions(self, first_name, last_name, page=1, limit=1):
+    def getbyOptions(self, first_name, last_name, page=1, limit=20):
         """
         fetch authentication info using the options metadata you provided when setting up the widget.
         
@@ -64,7 +69,7 @@ class Okra_Auth():
         return resp.json()
     
     
-    def getbyCustomer(self, customer_id, page=1, limit=1):
+    def getbyCustomer(self, customer_id, page=1, limit=20, **kwargs):
         """
         fetch authentication info using the customer id.
         
@@ -76,7 +81,7 @@ class Okra_Auth():
         return resp.json()
     
     
-    def getbyDate(self, from_, to_, page=1, limit=1):
+    def getbyDate(self, from_, to_, page=1, limit=20):
         """
         fetch authentication info using a date range.
         
@@ -89,7 +94,7 @@ class Okra_Auth():
         return resp.json()
     
     
-    def getbyBank(self, bank_id, page=1, limit=1):
+    def getbyBank(self, bank_id, page=1, limit=20):
         """
         fetch authentication info using the bank id.
         
@@ -101,11 +106,11 @@ class Okra_Auth():
         return resp.json()
     
     
-    def getbyCustomerDate(self, customer_id, from_, to_, page=1, limit=1):
+    def getbyCustomerDate(self, customer_id, from_, to_, page=1, limit=20):
         """
         fetch authentication for a customer using a date range and customer id.
         
-        Args : "customer_id":"5rggfdfghjkl4567",
+        Args : "customer":"5rggfdfghjkl4567",
                 "to_" (string): "2020-4-02",
                 "from_" (string): "2020-01-01"
         """

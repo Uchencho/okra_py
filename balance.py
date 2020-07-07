@@ -1,7 +1,6 @@
-from okra_auth import Okra_Auth
+from auth import Initializer
 
-
-class Okra_Balance():
+class Okra_Balance(Initializer):
     
     """
     returns the real-time balance for each of a record's accounts. 
@@ -10,10 +9,7 @@ class Okra_Balance():
     https://docs.okra.ng/products/balance
     
     Initialize with token and base_url(e.g 'https://api.okra.ng/sandbox/v1/')
-    """
-    
-    __init__ = Okra_Auth.__init__
-    
+    """    
     
     def retrieve_balance(self):
         
@@ -27,7 +23,7 @@ class Okra_Balance():
         return resp.json()
     
     
-    def getbyID(self, idx, page=1, limit=1):
+    def getbyID(self, idx, page=1, limit=20):
         
         """
         
@@ -42,7 +38,7 @@ class Okra_Balance():
         return resp.json()
     
     
-    def getbyOptions(self, first_name, last_name, page=1, limit=1):
+    def getbyOptions(self, first_name, last_name, page=1, limit=20):
         """
         fetch balance info using the options metadata you provided when setting up the widget.
         
@@ -56,7 +52,7 @@ class Okra_Balance():
         return resp.json()
     
     
-    def getbyCustomer(self, customer_id, page=1, limit=1):
+    def getbyCustomer(self, customer_id, page=1, limit=20):
         """
         
         fetch balance info using the customer id.
