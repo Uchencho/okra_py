@@ -10,14 +10,14 @@ class Initializer():
         
         import requests
         
-        self.api_token = token
+        self._api_token = token
         if prod_url is None:
-            self.base_url = base_url
+            self._base_url = base_url
         else:
-            self.base_url = prod_url
-        self.headers = {'Content-Type': 'application/json',
-                          'Authorization' : self.api_token}
-        self.requests = requests
+            self._base_url = prod_url
+        self._headers = {'Content-Type': 'application/json',
+                          'Authorization' : self._api_token}
+        self._requests = requests
 
 
 
@@ -37,8 +37,8 @@ class Okra_Auth(Initializer):
         """
         Retrieve Bank details
         """
-        url = self.base_url + "products/auths"
-        resp = self.requests.post(url, headers = self.headers)
+        url = self._base_url + "products/auths"
+        resp = self._requests.post(url, headers = self._headers)
         return resp.json()
     
     
@@ -49,9 +49,9 @@ class Okra_Auth(Initializer):
         
         Args : "idx" (string): "5rggfdfghjkl4567"
         """
-        url = self.base_url + "auth/getById"
+        url = self._base_url + "auth/getById"
         data_ = {"id": idx, "page": page, "limit":limit}
-        resp = self.requests.post(url, headers = headers, json=data_)
+        resp = self._requests.post(url, headers = self._headers, json=data_)
         return resp.json()
     
     
@@ -62,10 +62,10 @@ class Okra_Auth(Initializer):
         Args : "first_name" (string): "Uchencho",
                "last_name" (string): "Nwa Alozie"
         """
-        url = self.base_url + "auth/byOptions"
+        url = self._base_url + "auth/byOptions"
         data_ = {"page": page, "limit":limit, 
                 "options":{"first_name": first_name, "last_name": last_name}}
-        resp = self.requests.post(url, headers = headers, json=data_)
+        resp = self._requests.post(url, headers = self._headers, json=data_)
         return resp.json()
     
     
@@ -75,9 +75,9 @@ class Okra_Auth(Initializer):
         
         Args : "customer_id" (string): "5rggfdfghjkl4567",
         """
-        url = self.base_url + "auth/getByCustomer"
+        url = self._base_url + "auth/getByCustomer"
         data_ = {"page": page, "limit":limit, "customer":customer_id}
-        resp = self.requests.post(url, headers = headers, json=data_)
+        resp = self._requests.post(url, headers = self._headers, json=data_)
         return resp.json()
     
     
@@ -88,9 +88,9 @@ class Okra_Auth(Initializer):
         Args : "to_" (string): "2020-4-02",
                 "from_" (string): "2020-01-01"
         """
-        url = self.base_url + "auth/getByDate"
+        url = self._base_url + "auth/getByDate"
         data_ = {"page": page, "limit":limit, "to":to_, "from":from_}
-        resp = self.requests.post(url, headers = headers, json=data_)
+        resp = self._requests.post(url, headers = self._headers, json=data_)
         return resp.json()
     
     
@@ -100,9 +100,9 @@ class Okra_Auth(Initializer):
         
         Args : "bank_id" (string): "5rggfdfghjkl4567",
         """
-        url = self.base_url + "auth/getByBank"
+        url = self._base_url + "auth/getByBank"
         data_ = {"page": page, "limit":limit, "bank":bank_id}
-        resp = self.requests.post(url, headers = headers, json=data_)
+        resp = self._requests.post(url, headers = self._headers, json=data_)
         return resp.json()
     
     
@@ -114,7 +114,7 @@ class Okra_Auth(Initializer):
                 "to_" (string): "2020-4-02",
                 "from_" (string): "2020-01-01"
         """
-        url = self.base_url + "auth/getByDateCustomer"
+        url = self._base_url + "auth/getByDateCustomer"
         data_ = {"page": page, "limit":limit, "to":to_, "from":from_, "customer":customer_id}
-        resp = self.requests.post(url, headers = headers, json=data_)
+        resp = self._requests.post(url, headers = self._headers, json=data_)
         return resp.json()

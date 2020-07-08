@@ -18,8 +18,8 @@ class Okra_Balance(Initializer):
 
         Returns: Json Response
         """
-        url = self.base_url + "products/balances"
-        resp = self.requests.post(url, headers = self.headers)
+        url = self._base_url + "products/balances"
+        resp = self._requests.post(url, headers = self._headers)
         return resp.json()
     
     
@@ -32,9 +32,9 @@ class Okra_Balance(Initializer):
         Args : "idx" (string)
         
         """
-        url = self.base_url + "balance/getById"
+        url = self._base_url + "balance/getById"
         data_ = {"id": idx, "page": page, "limit":limit}
-        resp = self.requests.post(url, headers = headers, json=data_)
+        resp = self._requests.post(url, headers = self._headers, json=data_)
         return resp.json()
     
     
@@ -45,10 +45,10 @@ class Okra_Balance(Initializer):
         Args : "first_name" (string): "Uchencho",
                "last_name" (string): "Nwa Alozie"
         """
-        url = self.base_url + "balance/byOptions"
+        url = self._base_url + "balance/byOptions"
         data_ = {"page": page, "limit":limit, 
                 "options":{"first_name": first_name, "last_name": last_name}}
-        resp = self.requests.post(url, headers = headers, json=data_)
+        resp = self._requests.post(url, headers = self._headers, json=data_)
         return resp.json()
     
     
@@ -60,7 +60,7 @@ class Okra_Balance(Initializer):
         Args : "customer_id" (string)
         
         """
-        url = self.base_url + "balance/getByCustomer"
+        url = self._base_url + "balance/getByCustomer"
         data_ = {"page": page, "limit":limit, "customer":customer_id}
-        resp = self.requests.post(url, headers = headers, json=data_)
+        resp = self._requests.post(url, headers = self._headers, json=data_)
         return resp.json()
