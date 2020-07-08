@@ -1,14 +1,18 @@
+import requests
+from .errors import MissingTokenError
+
 class Initializer():
 
-    def __init__(self, token, base_url='https://api.okra.ng/sandbox/v1/', prod_url=None):
+    def __init__(self, token=None, base_url='https://api.okra.ng/sandbox/v1/', prod_url=None):
         
         """
         Import requests on initialization
         Set the headers based on api token
         Set needed attributes
         """
-        
-        import requests
+
+        if token is None:
+            raise MissingTokenError("Token is necessary to initialize Module")
         
         self._api_token = token
         if prod_url is None:
