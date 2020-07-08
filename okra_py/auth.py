@@ -18,7 +18,7 @@ class Initializer():
         self._api_token = token
         self._base_url = base_url if prod_url is None else prod_url
         self._headers = {'Content-Type': 'application/json',
-                          'Authorization' : self._api_token}
+                          'Authorization' : 'Bearer ' + self._api_token}
         self._requests = requests
 
 
