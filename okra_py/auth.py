@@ -1,4 +1,3 @@
-import requests
 from .errors import MissingTokenError
 
 class Initializer():
@@ -11,18 +10,16 @@ class Initializer():
         Set needed attributes
         """
 
+        import requests
+
         if token is None:
             raise MissingTokenError("Token is necessary to initialize Module")
         
         self._api_token = token
-        if prod_url is None:
-            self._base_url = base_url
-        else:
-            self._base_url = prod_url
+        self._base_url = base_url if prod_url is None else prod_url
         self._headers = {'Content-Type': 'application/json',
                           'Authorization' : self._api_token}
         self._requests = requests
-
 
 
 class Okra_Auth(Initializer):
@@ -42,8 +39,7 @@ class Okra_Auth(Initializer):
         Retrieve Bank details
         """
         url = self._base_url + "products/auths"
-        resp = self._requests.post(url, headers = self._headers)
-        return resp.json()
+        return self._requests.post(url, headers = self._headers)
     
     
     def getbyID(self, idx, page=1, limit=20):
@@ -55,8 +51,7 @@ class Okra_Auth(Initializer):
         """
         url = self._base_url + "auth/getById"
         data_ = {"id": idx, "page": page, "limit":limit}
-        resp = self._requests.post(url, headers = self._headers, json=data_)
-        return resp.json()
+        return self._requests.post(url, headers = self._headers, json=data_)
     
     
     def getbyOptions(self, first_name, last_name, page=1, limit=20):
@@ -69,8 +64,7 @@ class Okra_Auth(Initializer):
         url = self._base_url + "auth/byOptions"
         data_ = {"page": page, "limit":limit, 
                 "options":{"first_name": first_name, "last_name": last_name}}
-        resp = self._requests.post(url, headers = self._headers, json=data_)
-        return resp.json()
+        return self._requests.post(url, headers = self._headers, json=data_)
     
     
     def getbyCustomer(self, customer_id, page=1, limit=20, **kwargs):
@@ -81,8 +75,7 @@ class Okra_Auth(Initializer):
         """
         url = self._base_url + "auth/getByCustomer"
         data_ = {"page": page, "limit":limit, "customer":customer_id}
-        resp = self._requests.post(url, headers = self._headers, json=data_)
-        return resp.json()
+        return self._requests.post(url, headers = self._headers, json=data_)
     
     
     def getbyDate(self, from_, to_, page=1, limit=20):
@@ -94,8 +87,7 @@ class Okra_Auth(Initializer):
         """
         url = self._base_url + "auth/getByDate"
         data_ = {"page": page, "limit":limit, "to":to_, "from":from_}
-        resp = self._requests.post(url, headers = self._headers, json=data_)
-        return resp.json()
+        return self._requests.post(url, headers = self._headers, json=data_)
     
     
     def getbyBank(self, bank_id, page=1, limit=20):
@@ -106,8 +98,7 @@ class Okra_Auth(Initializer):
         """
         url = self._base_url + "auth/getByBank"
         data_ = {"page": page, "limit":limit, "bank":bank_id}
-        resp = self._requests.post(url, headers = self._headers, json=data_)
-        return resp.json()
+        return self._requests.post(url, headers = self._headers, json=data_)
     
     
     def getbyCustomerDate(self, customer_id, from_, to_, page=1, limit=20):
@@ -120,5 +111,4 @@ class Okra_Auth(Initializer):
         """
         url = self._base_url + "auth/getByDateCustomer"
         data_ = {"page": page, "limit":limit, "to":to_, "from":from_, "customer":customer_id}
-        resp = self._requests.post(url, headers = self._headers, json=data_)
-        return resp.json()
+        return self._requests.post(url, headers = self._headers, json=data_)
