@@ -12,18 +12,16 @@ class Okra_Balance(Initializer):
     """    
     
     def retrieve_balance(self):
-        
         """
         Retrieve Bank balance
 
-        Returns: Json Response
+        Returns: Response object
         """
         url = self._base_url + "products/balances"
         return self._requests.post(url, headers = self._headers)
     
     
     def getbyID(self, idx, page=1, limit=20):
-        
         """
         fetch balance info using the id of the balance.
         
