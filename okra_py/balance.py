@@ -74,7 +74,7 @@ class Okra_Balance(Initializer):
         Args : type_ (string) eg ledger_balance, available_balance
                value (string) eg 4000
         """
-        url = self._base_url + "balance/getByAccount"
+        url = self._base_url + "balance/getByType"
         data_ = {"page": page, "limit":limit, "type":type_, "amount":amount}
         return self._requests.post(url, headers = self._headers, json=data_)
         
@@ -92,15 +92,15 @@ class Okra_Balance(Initializer):
         return self._requests.post(url, headers = self._headers, json=data_)
 
 
-    def getRealTimeBalance(self, account_id, record_id, currency, page=1, limit=20):
+    def getRealTimeBalance(self, account_id, record_id, currency):
         """
-        fetch returns the real-time BALANCE at anytime without heavy calculation of the transactions on each of an Record's accounts.
+        fetch the real-time BALANCE at anytime without heavy calculation of the transactions on each of an Record's accounts.
         
         Args : "account_id" (string),
                 "record_id" (string),
                 "currency" (string),
         """
         url = self._base_url + "products/balance/periodic"
-        data_ = {"page": page, "limit":limit, "currency":currency, "from":record_id, "account_id":account_id}
+        data_ = {"currency":currency, "record_id":record_id, "account_id":account_id}
         return self._requests.post(url, headers = self._headers, json=data_)
     

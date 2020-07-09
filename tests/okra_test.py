@@ -34,6 +34,6 @@ class OkraTransactionTest(TestCase):
             OkraTransaction()
         self.assertTrue(context.exception)
 
-    def test_b_valid_retreive_balance_response(self):
+    def test_b_valid_retreive_transaction_response(self):
         okra_mod = OkraTransaction(token)
         self.assertEqual(okra_mod.getTransactions().status_code, 200)
