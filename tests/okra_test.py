@@ -4,7 +4,7 @@ from settings import token
 from okra_py.auth import Okra_Auth
 from okra_py.balance import Okra_Balance
 from okra_py.errors import MissingTokenError
-from okra_py.transactions import OkraTransaction
+from okra_py.transaction import OkraTransaction
 
 class OkraAuthTest(TestCase):
     def test_a_token_error(self):
