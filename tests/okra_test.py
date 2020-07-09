@@ -4,7 +4,9 @@ from settings import token
 from okra_py.auth import Okra_Auth
 from okra_py.balance import Okra_Balance
 from okra_py.errors import MissingTokenError
-from okra_py.transactions import OkraTransaction
+from okra_py.transaction import OkraTransaction
+from okra_py.identity import OkraIdentify
+from okra_py.income import OkraIncome
 
 class OkraAuthTest(TestCase):
     def test_a_token_error(self):
@@ -34,6 +36,24 @@ class OkraTransactionTest(TestCase):
             OkraTransaction()
         self.assertTrue(context.exception)
 
-    def test_b_valid_retreive_balance_response(self):
+    def test_b_valid_retreive_transaction_response(self):
         okra_mod = OkraTransaction(token)
         self.assertEqual(okra_mod.getTransactions().status_code, 200)
+
+
+class OkraIdentityTest(TestCase):
+    def test_a_token_error(self):
+        with self.assertRaises(MissingTokenError) as context:
+            OkraIdentify()
+        self.assertTrue(context.exception)
+
+
+class OkraIncomeTest(TestCase):
+    def test_a_token_error(self):
+        with self.assertRaises(MissingTokenError) as context:
+            OkraIncome()
+        self.assertTrue(context.exception)
+
+    def test_b_valid_retreive_income_response(self):
+        okra_mod = OkraIncome(token)
+        self.assertEqual(okra_mod.getIncome().status_code, 200)
