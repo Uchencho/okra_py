@@ -3,5 +3,5 @@ settings.py
 __pycache__/
 Pipfile
 Pipfile.lock
-.ipynb
+*.ipynb
 .ipynb_checkpoints/
