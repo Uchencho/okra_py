@@ -1,4 +1,4 @@
-from .errors import MissingTokenError
+from .errors import MissingTokenError, RequestLibraryError
 
 class Initializer():
 
@@ -9,8 +9,10 @@ class Initializer():
         Set the headers based on api token
         Set needed attributes
         """
-
-        import requests
+        try:
+            import requests
+        except ModuleNotFoundError:
+            raise RequestLibraryError("Please install request module")
 
         if token is None:
             raise MissingTokenError("Token is necessary to initialize Module")
