@@ -1,0 +1,16 @@
+language: python
+
+cache: pip
+
+python:
+    - "3.5"
+    - "3.6"
+    - "3.7"
+    - "3.8"
+
+install:
+    - pip install pipenv --upgrade-strategy=only-if-needed
+    - pipenv install
+
+script:
+    - python -m unittest tests/okra_test.py

@@ -1,7 +1,7 @@
 settings.py
 .vscode/
 __pycache__/
-Pipfile
+# Pipfile
 Pipfile.lock
 *.ipynb
 .ipynb_checkpoints/
