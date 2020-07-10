@@ -1,5 +1,5 @@
 from unittest import TestCase
-from settings import token
+# from settings import token
 
 from okra_py.auth import Okra_Auth
 from okra_py.balance import Okra_Balance
