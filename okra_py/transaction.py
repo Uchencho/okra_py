@@ -26,7 +26,7 @@ class OkraTransaction(Initializer):
         
         Args : "idx" (string)
         """
-        url = self._base_url + "transactions/getById"
+        url = self._base_url + "transaction/getById"
         data_ = {"id": idx, "page": page, "limit":limit}
         return self._requests.post(url, headers = self._headers, json=data_)
 
@@ -124,6 +124,6 @@ class OkraTransaction(Initializer):
                 "record_id" (string),
                 "currency" (string),
         """
-        url = self._base_url + "products/balance/periodic"
+        url = self._base_url + "products/transactions/periodic"
         data_ = {"currency":currency, "record_id":record_id, "account_id":account_id}
         return self._requests.post(url, headers = self._headers, json=data_)
