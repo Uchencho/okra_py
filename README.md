@@ -1,10 +1,11 @@
 # okra_py
-Okra API wrapper in Python
+[Okra](https://okra.ng/) API wrapper in Python
+
+<img src="https://pbs.twimg.com/profile_images/1199677745262989314/_D2jAMbu_400x400.jpg" alt="drawing" width="200"/> 
 
 ===============================
 
 [![Build Status](https://travis-ci.org/Uchencho/okra_py.svg?branch=master)](https://travis-ci.org/Uchencho/okra_py)
-
 
 ## Installation
 
