@@ -1,4 +1,4 @@
-from .auth import Initializer
+from .base import Initializer
 
 class Okra_Balance(Initializer):
     
