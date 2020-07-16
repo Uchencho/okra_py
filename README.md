@@ -32,10 +32,11 @@ Implementation
 -------------
 
 ### Sandbox/Development
-By default, the class is instantiated using sandbox(developement) endpoint. To use in production, simplly pass the url as an argument to 
+By default, the class is instantiated using sandbox(developement) endpoint. To use in production, simply pass the url as an argument to 
 prod_url when instantiating the class.
 
-### Retrieve Auth Example
+### Okra Auth Class
+The okra auth class provides seven methods which corresponds to the okra auth product https://docs.okra.ng/products/auth. Some of the methods are shown below:
 * **retrieve_auth**: retrieve the bank account and routing numbers associated with a Record's current, savings, and domiciliary accounts,
   ```python
     # Import the Okra Auth class
@@ -56,9 +57,26 @@ prod_url when instantiating the class.
     
     print(resp_by_id.status_code, resp_by_id.json())
     
+* **getbyCustomer**: fetch authentication info using the customer id.
+  ```python
+    
+    customer_id = "5rggfdfghjkl4567"
+    resp_by_cus_id = ok_mod.getbyCustomer(customer_id=customer_id)
+    
+    print(resp_by_cus_id.status_code, resp_by_cus_id.json())
+    
+* **getbyBank**: fetch authentication info using the bank id.
+  ```python
+    
+    bank_id = "5rggfdfghjkl4567"
+    resp_by_bank_id = ok_mod.getbyBank(bank_id=bank_id)
+    
+    print(resp_by_bank_id.status_code, resp_by_bank_id.json())
+    
     
 
 ### Balance Class Example
+The okra balance class provides eight methods which corresponds to the okra balance product https://docs.okra.ng/products/balance. Some of the methods are shown below:
 * **retrieve_balance**: this returns the real-time balance for each of a Record's account
   ```python
     # Import the Okra Balance class
@@ -78,6 +96,14 @@ prod_url when instantiating the class.
     bal_by_id = ok_bal.getbyID(idx=the_id)
     
     print(bal_by_id.status_code, bal_by_id.json())
+    
+* **getbyAccount**: fetch balance info using the account id.
+  ```python
+    
+    account_id = "5rggfdfghjkl4567"
+    resp_by_account_id = ok_bal.getbyAccount(account_id=account_id)
+    
+    print(resp_by_account_id.status_code, resp_by_account_id.json())
     
     
     
