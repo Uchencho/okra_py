@@ -9,11 +9,15 @@
 
 ## Installation
 
+**_To install with pip_**
+
+    $ pip install okra_py
+
 **_To install from source, clone this repo:_**
 
     $ git clone https://github.com/Uchencho/okra_py.git
     
-**_Change directory into the okra_py folder_**
+**_Change directory into the okra\_py folder_**
 
     $ cd okra_py/
     
