@@ -113,7 +113,7 @@ class OkraTransaction(Initializer):
                 "from_" (string): "2020-01-01"
         """
         url = self._base_url + "transaction/getByCustomerDate"
-        data_ = {"page": page, "limit":limit, "to":to_, "from":from_, "customer":customer_id}
+        data_ = {"page": page, "limit":limit, "to":to_, "from":from_, "customer_id":customer_id}
         return self._requests.post(url, headers = self._headers, json=data_)
 
     def getRealTimeBalance(self, account_id, record_id, currency):
