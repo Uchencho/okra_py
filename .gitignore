@@ -5,3 +5,6 @@ __pycache__/
 Pipfile.lock
 *.ipynb
 .ipynb_checkpoints/
+build/
+dist/
+okra_py.egg-info/
